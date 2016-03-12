@@ -13,8 +13,8 @@ const PORT=4040;
 function handleRequest(request, response){
   MongoClient.connect(url, function(err, db) {
       response.end('db size' + db.collection.count());
-  }
-}
+  };
+};
 
 //Create a server
 var server = http.createServer(handleRequest);
