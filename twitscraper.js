@@ -32,10 +32,11 @@ client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
 });
 
 var insertDocument = function(db, newtweet, callback) {
+  console.log(db.collection(tweets).count());
    db.collection('tweets').insertOne(newtweet
    , function(err, result) {
     assert.equal(err, null);
-    console.log(db.collection.count());
+
     callback();
   });
 };
