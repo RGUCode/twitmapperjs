@@ -36,7 +36,7 @@ var insertDocument = function(db, newtweet, callback) {
    db.collection('tweets').insertOne(newtweet
    , function(err, result) {
     assert.equal(err, null);
-    console.log(i++);
+    console.log(counter++);
 
     callback();
   });
