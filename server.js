@@ -11,7 +11,9 @@ const PORT=4040;
 
 //We need a function which handles requests and send response
 function handleRequest(request, response){
-    response.end('db size' + db.collection.count());
+  MongoClient.connect(url, function(err, db) {
+      response.end('db size' + db.collection.count());
+  }
 }
 
 //Create a server
