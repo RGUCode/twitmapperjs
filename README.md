@@ -9,3 +9,5 @@ sudo apt-get install -y build-essential
 
 Install mongo
 https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+
+server port 27017
