@@ -23,7 +23,7 @@ client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
         db.close();
       });
   });
-    console.log(tweet.text);
+    //console.log(tweet.text);
   });
 
   stream.on('error', function(error) {
