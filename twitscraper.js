@@ -6,7 +6,7 @@ var client = new Twitter({
   access_token_key: '14812487-06dGq8Lr1VkKZS21iuuZ0tr36tg5oi9yycWFcjpnV',
   access_token_secret: 'fFFOlemWQbnS7n56rtppDLR0TCy4zrrgmheL81abj6vA2',
 });
-console.log(consumer_key +" : "+ consumer_secret +" : "+ access_token_key +" : "+ z)
+//console.log(consumer_key +" : "+ consumer_secret +" : "+ access_token_key +" : "+ z)
 /**
  * Stream statuses filtered by keyword
  * number of tweets per second depends on topic popularity
