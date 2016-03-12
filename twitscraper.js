@@ -35,7 +35,7 @@ var insertDocument = function(db, newtweet, callback) {
    db.collection('tweets').insertOne(newtweet
    , function(err, result) {
     assert.equal(err, null);
-    console.log("Inserted a document into the restaurants collection.");
+    console.log(db.collection.count());
     callback();
   });
 };
