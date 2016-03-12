@@ -1,3 +1,7 @@
+var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
+var ObjectId = require('mongodb').ObjectID;
+var url = 'mongodb://localhost:27017/test';
 var Twitter = require('twitter');
 
 var client = new Twitter({
@@ -13,10 +17,25 @@ var client = new Twitter({
  **/
 client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
   stream.on('data', function(tweet) {
-    console.log(tweet.text);
+    MongoClient.connect(url, function(err, db) {
+      assert.equal(null, err);
+      insertDocument(db, tweet, function() {
+        db.close();
+      });
+  });
+    //console.log(tweet.text);
   });
 
   stream.on('error', function(error) {
     console.log(error);
   });
 });
+
+var insertDocument = function(db, newtweet, callback) {
+   db.collection('tweets').insertOne(newtweet
+   , function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the restaurants collection.");
+    callback();
+  });
+};
