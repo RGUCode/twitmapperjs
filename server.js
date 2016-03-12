@@ -7,7 +7,7 @@ var url = 'mongodb://localhost:27017/test';
 
 
 //Lets define a port we want to listen to
-const PORT=8080;
+const PORT=8000;
 
 //We need a function which handles requests and send response
 function handleRequest(request, response){
