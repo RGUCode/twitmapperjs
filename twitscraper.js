@@ -3,6 +3,7 @@ var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/test';
 var Twitter = require('twitter');
+var counter = 0;
 
 var client = new Twitter({
   consumer_key: 'KXdzujUy8NHjC1h2obqNPtMVL',
@@ -32,10 +33,10 @@ client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
 });
 
 var insertDocument = function(db, newtweet, callback) {
-  console.log(db.collection(tweets).count());
    db.collection('tweets').insertOne(newtweet
    , function(err, result) {
     assert.equal(err, null);
+    console.log(i++);
 
     callback();
   });
