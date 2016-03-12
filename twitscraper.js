@@ -18,13 +18,7 @@ var client = new Twitter({
  **/
 client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
   stream.on('data', function(tweet) {
-    MongoClient.connect(url, function(err, db) {
-      assert.equal(null, err);
-      insertDocument(db, tweet, function() {
-        db.close();
-      });
-  });
-    //console.log(tweet.text);
+
   });
 
   stream.on('error', function(error) {
