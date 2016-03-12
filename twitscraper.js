@@ -7,7 +7,7 @@ var client = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
-client.stream('statuses/filter', {track: 'brexit,bremain'}, function(stream) {
+client.stream('statuses/filter', {track: 'javascript'}, function(stream) {
   stream.on('data', function(tweet) {
     console.log(tweet.text);
   });
