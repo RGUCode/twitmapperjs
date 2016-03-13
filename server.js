@@ -15,39 +15,29 @@ var itemsProcessed = 0;
 var total =0;
 //We need a function which handles requests and send response
 function handleRequest(request, response){
-  MongoClient.connect(mongoURL, function(err, db) {
-    var total = db.collection('tweets').count();
-      //total = numOfDocs;
-
-      var queryObject = url.parse(request.url,true).query;
-      //console.log(queryObject);ls
-       response.writeHead(200, { "Content-Type": "text/plain" });
-       //response.write(util.inspect(queryObject));
-       db.collection('tweets').find({},function(err, records) {
-         if(err) {
-           console.log("There was an error executing the database query.");
-           response.write("this totally hasn't worked");
-           response.end();
-           return;
-         }
-         //response.write(queryObject['search']);
-
-         i = records.length;
-         var html = '<h2>'+i+' Records of '+util.inspect(total)+' </h2>';
-         while(i--) {
-           html += '<p><b>Name:</b> '
-           + records[i].user.name
-           + ' <br /><b>Text:</b> '
-           + records[i].text;
-         }
-         response.write(html);
-         response.end();
-
-        });
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    findTweets(db, function() {
       db.close();
+    });
   });
 };
-
+var findTweets = function(db, callback) {
+   var cursor =db.collection('tweets').find( );
+   var html = '<h2> Results </h2>';
+   cursor.each(function(err, tweet) {
+      assert.equal(err, null);
+      if (doc != null) {
+         console.dir(tweet);
+         html += '<p><b>Name:</b> '
+         + records[i].user.name
+         + ' <br /><b>Text:</b> '
+         + records[i].text;
+      } else {
+         callback();
+      }
+   });
+};
 
 //Create a server
 var server = http.createServer(handleRequest);
