@@ -3,7 +3,7 @@ var http = require('http');
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
-var url = 'mongodb://localhost:27017/test';
+var mongoURL = 'mongodb://localhost:27017/test';
 var fs = require('fs');
 var http = require('http');
 var url = require('url') ;
@@ -13,10 +13,11 @@ const PORT=4040;
 
 //We need a function which handles requests and send response
 function handleRequest(request, response){
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(mongoURL, function(err, db) {
     db.collection('tweets').count({}, function(error, numOfDocs) {
       var queryObject = url.parse(request.url,true).query;
-      //console.log(queryObject);
+      //console.log(queryObject);ls
+      
        response.writeHead(200);
        response.write(queryObject);
        response.end('I have '+numOfDocs+' documents in my collection');
