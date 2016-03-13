@@ -18,12 +18,13 @@ var client = new Twitter({
  **/
 MongoClient.connect(mongoURL, function(err, db) {
   db.collection('tweets').drop();
+  db.createCollection('tweets');
 });
 client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
 
   stream.on('data', function(tweet) {
     MongoClient.connect(mongoURL, function(err, db) {
-      db.tweets.insert(tweet);
+      db.tweets.insertOne(tweet);
       console.log(counter++);
     });
   });
