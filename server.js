@@ -11,7 +11,7 @@ var util = require("util");
 
 //Lets define a port we want to listen to
 const PORT=4040;
-
+var itemsProcessed = 0;
 //We need a function which handles requests and send response
 function handleRequest(request, response){
   MongoClient.connect(mongoURL, function(err, db) {
@@ -23,12 +23,20 @@ function handleRequest(request, response){
 
        response.write(queryObject['search']);
        response.write('\n');
-       var find = db.collection('tweets').find({});
-       response.write(util.inspect(find));
-       response.end('I have '+numOfDocs+' documents in my collection');
+       itemsProcessed = 0;
+       db.collection('tweets').find().forEach(writeTweet,writeEnd);
+
+
     });
   });
 };
+function writeTweet(tweet){
+  repsonse.write(tweet.text);
+}
+function writeEnd () {
+  response.write('\n');
+  response.end('I have '+numOfDocs+' documents in my collection');
+}
 
 //Create a server
 var server = http.createServer(handleRequest);
