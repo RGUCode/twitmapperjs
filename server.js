@@ -12,9 +12,8 @@ const PORT=4040;
 //We need a function which handles requests and send response
 function handleRequest(request, response){
   MongoClient.connect(url, function(err, db) {
-    collection.count({}, function(error, numOfDocs) {
+    db.tweets.count({}, function(error, numOfDocs) {
       console.log('I have '+numOfDocs+' documents in my collection');
-
     });
   });
 };
