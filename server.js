@@ -30,10 +30,10 @@ function handleRequest(request, response){
     });
   });
 };
-function writeTweet(tweet){
+function writeTweet(tweet,response){
   repsonse.write(tweet.text);
 }
-function writeEnd () {
+function writeEnd (response) {
   response.write('\n');
   response.end('I have '+numOfDocs+' documents in my collection');
 }
