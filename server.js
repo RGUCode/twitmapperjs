@@ -20,7 +20,11 @@ function handleRequest(request, response){
       //console.log(queryObject);ls
        response.writeHead(200, { "Content-Type": "text/plain" });
        //response.write(util.inspect(queryObject));
+
        response.write(queryObject['search']);
+       response.write('\n');
+       var find = db.collection('tweets').find(queryObject['search']);
+       response.write(util.inspect(find));
        response.end('I have '+numOfDocs+' documents in my collection');
     });
   });
