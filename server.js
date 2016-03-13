@@ -27,7 +27,7 @@ function handleRequest(request, response){
            response.end();
            return;
          }
-         response.write(queryObject['search']);
+         //response.write(queryObject['search']);
          var html = '<h2>Tweet with tory</h2>',
          i = records.length;
 
