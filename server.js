@@ -18,7 +18,7 @@ function handleRequest(request, response){
   MongoClient.connect(mongoURL, function(err, db) {
     db.collection('tweets').count({}, function(error, numOfDocs) {
       total = numOfDocs;
-    });
+
       var queryObject = url.parse(request.url,true).query;
       //console.log(queryObject);ls
        response.writeHead(200, { "Content-Type": "text/plain" });
@@ -42,6 +42,7 @@ function handleRequest(request, response){
          }
          response.write(html);
          response.end();
+        });
         });
   });
 };
