@@ -16,8 +16,8 @@ var total =0;
 //We need a function which handles requests and send response
 function handleRequest(request, response){
   MongoClient.connect(mongoURL, function(err, db) {
-    db.collection('tweets').count({}, function(error, numOfDocs) {
-      total = numOfDocs;
+    var total = db.collection('tweets').count();
+      //total = numOfDocs;
 
       var queryObject = url.parse(request.url,true).query;
       //console.log(queryObject);ls
@@ -43,7 +43,6 @@ function handleRequest(request, response){
          response.write(html);
          response.end();
 
-        });
         });
       db.close();
   });
