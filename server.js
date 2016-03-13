@@ -33,7 +33,7 @@ function handleRequest(request, response){
          //response.write(queryObject['search']);
 
          i = records.length;
-         var html = '<h2>'+i+' Records of '+total+' </h2>';
+         var html = '<h2>'+i+' Records of '+util.inspect(total)+' </h2>';
          while(i--) {
            html += '<p><b>Name:</b> '
            + records[i].user.name
