@@ -23,7 +23,7 @@ client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
 
   stream.on('data', function(tweet) {
     MongoClient.connect(mongoURL, function(err, db) {
-      db.collection('tweets').insertOne(tweet);
+      db.tweets.insertOne(tweet);
       console.log(counter++);
     });
   });
