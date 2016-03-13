@@ -7,6 +7,7 @@ var mongoURL = 'mongodb://localhost:27017/test';
 var fs = require('fs');
 var http = require('http');
 var url = require('url') ;
+var util = require("util");
 
 //Lets define a port we want to listen to
 const PORT=4040;
@@ -17,9 +18,8 @@ function handleRequest(request, response){
     db.collection('tweets').count({}, function(error, numOfDocs) {
       var queryObject = url.parse(request.url,true).query;
       //console.log(queryObject);ls
-
-       response.writeHead(200);
-       response.write(""+queryObject);
+       response.writeHead(200, { "Content-Type": "text/plain" });
+       response.write(util.inspect(queryObject));
        response.end('I have '+numOfDocs+' documents in my collection');
     });
   });
