@@ -17,7 +17,10 @@ var total =0;
 function handleRequest(request, response){
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
-    findTweets(db, function() {
+    findTweets(db, function(html) {
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.write(html);
+      response.end();
       db.close();
     });
   });
@@ -31,12 +34,12 @@ var findTweets = function(db, callback) {
       assert.equal(err, null);
       if (tweet != null) {
          console.dir(tweet);
-         //html += '<p><b>Name:</b> '
-         //+ records[i].user.name
-         //+ ' <br /><b>Text:</b> '
-         //+ records[i].text;
+         html += '<p><b>Name:</b> '
+         + tweet.user.name
+         + ' <br /><b>Text:</b> '
+         + tweet.text;
       } else {
-         callback();
+         callback(html);
       }
    });
 };
