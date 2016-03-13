@@ -31,10 +31,10 @@ var findTweets = function(db, callback) {
       assert.equal(err, null);
       if (tweet != null) {
          console.dir(tweet);
-         html += '<p><b>Name:</b> '
-         + records[i].user.name
-         + ' <br /><b>Text:</b> '
-         + records[i].text;
+         //html += '<p><b>Name:</b> '
+         //+ records[i].user.name
+         //+ ' <br /><b>Text:</b> '
+         //+ records[i].text;
       } else {
          callback();
       }
