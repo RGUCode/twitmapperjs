@@ -18,20 +18,10 @@ var client = new Twitter({
  **/
 client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
   stream.on('data', function(tweet) {
-
+      db.collection('tweets').insertOne(tweet);
   });
 
   stream.on('error', function(error) {
     console.log(error);
   });
 });
-
-var insertDocument = function(db, newtweet, callback) {
-   db.collection('tweets').insertOne(newtweet
-   , function(err, result) {
-    assert.equal(err, null);
-    console.log(counter++);
-
-    callback();
-  });
-};
