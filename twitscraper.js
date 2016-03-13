@@ -16,16 +16,15 @@ var client = new Twitter({
  * Stream statuses filtered by keyword
  * number of tweets per second depends on topic popularity
  **/
-MongoClient.connect(mongoURL, function(err, db) {
-  db.collection('tweets').drop();
-  db.createCollection('tweets');
-});
+
 client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
 
   stream.on('data', function(tweet) {
     MongoClient.connect(mongoURL, function(err, db) {
-      db.tweets.insertOne(tweet);
-      console.log(counter++);
+      assert.equal(null, err);
+      insertDocument(db,tweet, function() {
+        db.close();
+      });
     });
   });
 
@@ -33,3 +32,11 @@ client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
     console.log(error);
   });
 });
+
+var insertDocument = function(db, newtweet, callback) {
+   db.collection('tweets').insertOne( newtweet, function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the tweets collection.");
+    callback();
+  });
+};

@@ -42,8 +42,10 @@ function handleRequest(request, response){
          }
          response.write(html);
          response.end();
+
         });
         });
+      db.close();
   });
 };
 
