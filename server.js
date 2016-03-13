@@ -23,7 +23,7 @@ function handleRequest(request, response){
 
        response.write(queryObject['search']);
        response.write('\n');
-       var find = db.collection('tweets').find({ hashtags: queryObject['search'] });
+       var find = db.collection('tweets').find({});
        response.write(util.inspect(find));
        response.end('I have '+numOfDocs+' documents in my collection');
     });
