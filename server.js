@@ -17,9 +17,9 @@ function handleRequest(request, response){
     db.collection('tweets').count({}, function(error, numOfDocs) {
       var queryObject = url.parse(request.url,true).query;
       //console.log(queryObject);ls
-      
+
        response.writeHead(200);
-       response.write(queryObject);
+       response.write(""+queryObject);
        response.end('I have '+numOfDocs+' documents in my collection');
     });
   });
