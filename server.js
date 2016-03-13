@@ -12,10 +12,13 @@ var util = require("util");
 //Lets define a port we want to listen to
 const PORT=4040;
 var itemsProcessed = 0;
+var total =0;
 //We need a function which handles requests and send response
 function handleRequest(request, response){
   MongoClient.connect(mongoURL, function(err, db) {
     db.collection('tweets').count({}, function(error, numOfDocs) {
+      total = numOfDocs;
+    });
       var queryObject = url.parse(request.url,true).query;
       //console.log(queryObject);ls
        response.writeHead(200, { "Content-Type": "text/plain" });
@@ -30,7 +33,7 @@ function handleRequest(request, response){
          //response.write(queryObject['search']);
 
          i = records.length;
-         var html = '<h2>'+i+' Records</h2>';
+         var html = '<h2>'+i+' Records of '+total+' </h2>';
          while(i--) {
            html += '<p><b>Name:</b> '
            + records[i].user.name
@@ -40,7 +43,6 @@ function handleRequest(request, response){
          response.write(html);
          response.end();
         });
-      })
   });
 };
 
