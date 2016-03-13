@@ -19,7 +19,8 @@ function handleRequest(request, response){
       var queryObject = url.parse(request.url,true).query;
       //console.log(queryObject);ls
        response.writeHead(200, { "Content-Type": "text/plain" });
-       response.write(util.inspect(queryObject));
+       //response.write(util.inspect(queryObject));
+       response.write(queryObject['search']);
        response.end('I have '+numOfDocs+' documents in my collection');
     });
   });
