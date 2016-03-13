@@ -16,9 +16,11 @@ var client = new Twitter({
  * Stream statuses filtered by keyword
  * number of tweets per second depends on topic popularity
  **/
+db.collection('tweets').drop()
 client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
   stream.on('data', function(tweet) {
       db.collection('tweets').insertOne(tweet);
+      console.log(counter++);
   });
 
   stream.on('error', function(error) {
