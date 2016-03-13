@@ -20,23 +20,30 @@ function handleRequest(request, response){
       //console.log(queryObject);ls
        response.writeHead(200, { "Content-Type": "text/plain" });
        //response.write(util.inspect(queryObject));
+       db.demo_collection('tweets').find({"text": "tory"}, function(err, records) {
+         if(err) {
+           console.log("There was an error executing the database query.");
+           response.write("this totally hasn't worked");
+           response.end();
+           return;
+         }
+         response.write(queryObject['search']);
+         var html = '<h2>Tweet with tory</h2>',
+         i = records.length;
 
-       response.write(queryObject['search']);
-       response.write('\n');
-       itemsProcessed = 0;
-       db.collection('tweets').find().forEach(writeTweet,writeEnd);
-
-
-    });
+         while(i--) {
+           html += '<p><b>Name:</b> '
+           + records[i].user.name
+           + ' <br /><b>Text:</b> '
+           + records[i].text;
+         }
+         response.write(html);
+         response.end();
+        });
+      })
   });
 };
-function writeTweet(tweet,response){
-  repsonse.write(tweet.text);
-}
-function writeEnd (response) {
-  response.write('\n');
-  response.end('I have '+numOfDocs+' documents in my collection');
-}
+
 
 //Create a server
 var server = http.createServer(handleRequest);
