@@ -33,7 +33,7 @@ var findTweets = function(db, callback) {
    cursor.each(function(err, tweet) {
       assert.equal(err, null);
       if (tweet != null) {
-         console.dir(tweet);
+         //console.dir(tweet);
          html += '<p><b>Name:</b> '
          + tweet.user.name
          + ' <br /><b>Text:</b> '

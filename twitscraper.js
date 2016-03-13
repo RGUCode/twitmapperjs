@@ -36,7 +36,7 @@ client.stream('statuses/filter', {track: 'bremain, brexit'},  function(stream){
 var insertDocument = function(db, newtweet, callback) {
    db.collection('tweets').insertOne( newtweet, function(err, result) {
     assert.equal(err, null);
-    console.log("Inserted a document into the tweets collection.");
+    //console.log("Inserted a document into the tweets collection.");
     callback();
   });
 };
