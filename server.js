@@ -13,9 +13,10 @@ var util = require("util");
 const PORT=4040;
 var itemsProcessed = 0;
 var total =0;
-
+var queryData;
 //We need a function which handles requests and send response
 function handleRequest(request, response){
+  queryData = url.parse(request.url, true).query;
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
     findTweets(db, function(html) {
@@ -29,9 +30,9 @@ function handleRequest(request, response){
 
 
 var findTweets = function(db, callback) {
-  var queryData = url.parse(request.url, true).query;
+
    var cursor =db.collection('tweets').find({"hashtags":queryData.search} );
-   var html = '<h2> Results </h2>';
+   var html = '<h2> Results '+queryData.search+' </h2>';
    cursor.each(function(err, tweet) {
       assert.equal(err, null);
       if (tweet != null) {
