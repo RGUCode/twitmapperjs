@@ -20,7 +20,7 @@ function handleRequest(request, response){
       //console.log(queryObject);ls
        response.writeHead(200, { "Content-Type": "text/plain" });
        //response.write(util.inspect(queryObject));
-       db.collection('tweets').find({"text": "tory"}, function(err, records) {
+       db.collection('tweets').find({}, function(err, records) {
          if(err) {
            console.log("There was an error executing the database query.");
            response.write("this totally hasn't worked");
