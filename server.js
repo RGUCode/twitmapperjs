@@ -13,7 +13,7 @@ const PORT=4040;
 function handleRequest(request, response){
   MongoClient.connect(url, function(err, db) {
     db.collection('tweets').count({}, function(error, numOfDocs) {
-      console.log('I have '+numOfDocs+' documents in my collection');
+       response.end('I have '+numOfDocs+' documents in my collection');
     });
   });
 };
