@@ -28,9 +28,9 @@ function handleRequest(request, response){
            return;
          }
          //response.write(queryObject['search']);
-         var html = '<h2>Tweet with tory</h2>',
-         i = records.length;
 
+         i = records.length;
+         var html = '<h2>'+i+' Records</h2>',
          while(i--) {
            html += '<p><b>Name:</b> '
            + records[i].user.name
