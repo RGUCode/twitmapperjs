@@ -29,7 +29,7 @@ var findTweets = function(db, callback) {
    var html = '<h2> Results </h2>';
    cursor.each(function(err, tweet) {
       assert.equal(err, null);
-      if (doc != null) {
+      if (tweet != null) {
          console.dir(tweet);
          html += '<p><b>Name:</b> '
          + records[i].user.name
