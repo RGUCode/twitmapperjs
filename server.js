@@ -61,7 +61,7 @@ var findTweets = function(db, callback) {
 var searchTweets = function(db, callback) {
    var cursor = db.collection('tweets').find({
     "$text": {
-      "$search": queryData.search
+      "$search": "tory"
     }
   });
    var html = '<h2> Search Results '+queryData.search +' </h2>';
