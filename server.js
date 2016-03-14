@@ -14,6 +14,17 @@ const PORT=4040;
 var itemsProcessed = 0;
 var total =0;
 var queryData;
+
+MongoClient.connect(mongoURL, function(err, db) {
+db.ensureIndex("tweets", {
+   document: "text"
+  }, function(err, indexname) {
+    assert.equal(null, err);
+  });
+});
+
+
+
 //We need a function which handles requests and send response
 function handleRequest(request, response){
   queryData = url.parse(request.url, true).query;
@@ -48,7 +59,11 @@ var findTweets = function(db, callback) {
 };
 
 var searchTweets = function(db, callback) {
-   var cursor = db.command({text:"tweets" , search: "tory" });
+   var cursor = db.collection('textstore').find({
+    "$text": {
+      "$search": queryData.search
+    }
+  });
    var html = '<h2> Search Results '+queryData.search +' </h2>';
    cursor.each(function(err, tweet) {
       assert.equal(err, null);
