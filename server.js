@@ -48,8 +48,8 @@ var findTweets = function(db, callback) {
 };
 
 var searchTweets = function(db, callback) {
-   var cursor =db.collection('tweets').runCommand("text".{search: queryData.search })
-   var html = '<h2> Results '++' </h2>';
+   var cursor =db.collection('tweets').runCommand("text":{search: queryData.search })
+   var html = '<h2> Search Results '+queryData.search +' </h2>';
    cursor.each(function(err, tweet) {
       assert.equal(err, null);
       if (tweet != null) {
