@@ -59,7 +59,7 @@ var findTweets = function(db, callback) {
 };
 
 var searchTweets = function(db, callback) {
-   var cursor = db.collection('textstore').find({
+   var cursor = db.collection('tweets').find({
     "$text": {
       "$search": queryData.search
     }
