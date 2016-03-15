@@ -30,14 +30,16 @@ function handleRequest(request, response){
   queryData = url.parse(request.url, true).query;
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
+    console.log(queryData.page);
     if(queryData.page =="stream"){
       findTweetsStream(db, writeHTML, response);
     }
-    else if(queryData.page =="data"){
-      showStats(db, writeHTML, response);
+    else if(queryData.page =="find"){
+      findTweets(db, writeHTML, response);
     }
     else{
-      findTweets(db, writeHTML, response);
+      showStats(db, writeHTML, response);
+
     }
   });
 };
@@ -60,19 +62,16 @@ var showStats = function(db, callback,res) {
       callback(html,res,db);
     });
   });
-
-
-
-
-
-}
+};
 
 var findTweetsStream = function(db, callback,res) {
 
    var cursor =db.collection('tweets').find();
    var html = '<h2> Results '+queryData.search+' </h2>';
+   var counter=0;
    cursor.on('data', function(tweet) {
      if (tweet != null) {
+       console.log(counter++);
         //console.dir(tweet);
         if(tweet.name !=null){
           html += '<p><b>Name:</b> ';
