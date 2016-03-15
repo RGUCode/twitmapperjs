@@ -34,7 +34,7 @@ function start(){
   console.log("starting");
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
-    console.log(queryData.page);
+    //console.log(queryData.page);
     //if(queryData.page =="stream"){
       console.log("starting stream");
       findTweetsStream(db);
