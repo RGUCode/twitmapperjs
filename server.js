@@ -48,9 +48,9 @@ var writeHTML = function(html,response,db){
 
 var showStats = function(db, callback,res) {
   var html = '<h2> Stats </h2>';
-  html += '<p>'+util.inspect(db.stats())+'</p>';
+  html += '<p>'+JSON.stringify(db.stats())+'</p>';
   html += '<h2> Document Count </h2>';
-  html += '<p>'+util.inspect(db.collection('tweets').count())+'</p>';
+  html += '<p>'+JSON.stringify(db.collection('tweets').count())+'</p>';
   callback(html,res,db);
 }
 
