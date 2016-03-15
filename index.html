@@ -18,7 +18,7 @@
             socket.on('message', console.log.bind(console));
 
             function addMessage(message) {
-                var text = document.createTextNode(message),
+                var text = document.createTextNode(JSON.stringify(message)),
                     el = document.createElement('li'),
                     messages = document.getElementById('messages');
 
