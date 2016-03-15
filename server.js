@@ -31,31 +31,31 @@ function handleRequest(request, response){
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
     if(queryData.page =="data"){
-      showStats(db, writeHTML);
+      showStats(db, writeHTML, response);
     }
     else{
-      findTweets(db, writeHTML);
+      findTweets(db, writeHTML, response);
     }
   });
 };
 
-var writeHTML = function(html){
+var writeHTML = function(html,response){
   response.writeHead(200, {"Content-Type": "text/html"});
   response.write(html);
   response.end();
   db.close();
 }
 
-var showStats = function(db, callback) {
+var showStats = function(db, callback,res) {
   var html = '<h2> Stats </h2>';
   html += '<p>'+db.stats()+'</p>';
   html += '<h2> Document Count </h2>';
   html += '<p>'+db.collection('tweets').count()+'</p>';
-  callback(html);
+  callback(html,res);
 }
 
 
-var findTweets = function(db, callback) {
+var findTweets = function(db, callback,res) {
 
    var cursor =db.collection('tweets').find();
    var html = '<h2> Results '+queryData.search+' </h2>';
@@ -68,12 +68,12 @@ var findTweets = function(db, callback) {
          + ' <br /><b>Text:</b> '
          + tweet.text;
       } else {
-         callback(html);
+         callback(html,res);
       }
    });
 };
 
-var searchTweets = function(db, callback) {
+var searchTweets = function(db, callback,res) {
    var cursor = db.collection('tweets').find({
     "$text": {
       "$search": "tory"
@@ -89,7 +89,7 @@ var searchTweets = function(db, callback) {
          + ' <br /><b>Text:</b> '
          + tweet.text;
       } else {
-         callback(html);
+         callback(html,res);
       }
    });
 };
