@@ -30,12 +30,12 @@ function handleRequest(request, response){
   queryData = url.parse(request.url, true).query;
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
-    //if(queryData.page =="data"){
+    if(queryData.page =="data"){
       showStats(db, writeHTML);
-    //}
-    //else{
-      //findTweets(db, writeHTML);
-    //}
+    }
+    else{
+      findTweets(db, writeHTML);
+    }
   });
 };
 
@@ -51,6 +51,7 @@ var showStats = function(db, callback) {
   html += '<p>'+db.stats()+'</p>';
   html += '<h2> Document Count </h2>';
   html += '<p>'+db.collection('tweets').count()+'</p>';
+  callback(html);
 }
 
 
