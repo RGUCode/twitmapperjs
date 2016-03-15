@@ -30,10 +30,10 @@ function handleRequest(request, response){
   queryData = url.parse(request.url, true).query;
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
-    if(queryData.page =="data"){
+    if(queryData.page =="stream"){
       findTweetsStream(db, writeHTML, response);
     }
-    else if(queryData.page =="stream"){
+    else if(queryData.page =="data"){
       showStats(db, writeHTML, response);
     }
     else{
@@ -74,10 +74,14 @@ var findTweetsStream = function(db, callback,res) {
    cursor.on('data', function(tweet) {
      if (tweet != null) {
         //console.dir(tweet);
-        html += '<p><b>Name:</b> '
-        + tweet.user.name
-        + ' <br /><b>Text:</b> '
-        + tweet.text;
+        if(tweet.name !=null){
+          html += '<p><b>Name:</b> ';
+          html += tweet.user.name;
+        }
+        if(tweet.text !=null){
+          html += ' <br /><b>Text:</b> '
+          html += tweet.text;
+        }
       }
     });
 
