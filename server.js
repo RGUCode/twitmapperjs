@@ -83,8 +83,6 @@ var findTweetsStream = function(db, callback,res) {
     cursor.once('end', function() {
       callback(html,res,db);
     });
-
-   });
 };
 
 
