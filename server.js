@@ -64,6 +64,26 @@ var showStats = function(db, callback,res) {
 
 }
 
+var findTweetsStream = function(db, callback,res) {
+
+   var cursor =db.collection('tweets').find();
+   var html = '<h2> Results '+queryData.search+' </h2>';
+   cursor.on('data', function(tweet) {
+     if (tweet != null) {
+        //console.dir(tweet);
+        html += '<p><b>Name:</b> '
+        + tweet.user.name
+        + ' <br /><b>Text:</b> '
+        + tweet.text;
+    });
+
+    cursor.once('end', function() {
+      callback(html,res,db);
+    });
+
+   });
+};
+
 
 var findTweets = function(db, callback,res) {
 
