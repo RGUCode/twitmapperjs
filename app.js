@@ -21,6 +21,7 @@
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
+    console.log("creating server");
     res.writeHead(200, {'Content-Type': 'text/html'});
     queryData = url.parse(req.url, true).query;
     res.end(index);
@@ -29,22 +30,17 @@ var app = http.createServer(function(req, res) {
 // Socket.io server listens to our app
 var io = require('socket.io').listen(app);
 
-// Send current time to all connected clients
-function sendTime() {
-    io.emit('time', { time: new Date().toJSON() });
-}
-
-// Send current time every 10 secs
-setInterval(sendTime, 10000);
-
 function start(){
+  console.log("starting");
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
     console.log(queryData.page);
     if(queryData.page =="stream"){
+      console.log("starting stream");
       findTweetsStream(db);
     }
     else{
+      console.log("starting stats");
       showStats(db);
 
     }
@@ -55,7 +51,6 @@ function start(){
 io.on('connection', function(socket) {
     // Use socket to communicate with this particular client only, sending it it's own id
     socket.emit('welcome', { message: 'Welcome!', id: socket.id });
-    socket.on('i am client', console.log);
     start();
 });
 
