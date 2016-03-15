@@ -47,7 +47,6 @@ var writeHTML = function(html){
 }
 
 var showStats = function(db, callback) {
-  var cursor =db.collection('tweets').find();
   var html = '<h2> Stats </h2>';
   html += '<p>'+db.stats()+'</p>';
   html += '<h2> Document Count </h2>';
