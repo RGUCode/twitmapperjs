@@ -74,7 +74,7 @@ var findTweetsStream = function(db, callback,res) {
    var counter=0;
    cursor.on('data', function(tweet) {
      if (tweet != null) {
-       console.log(counter++);
+       //console.log(counter++);
         io.emit('time', tweet.user);
       }
     });
