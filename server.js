@@ -39,7 +39,7 @@ function handleRequest(request, response){
   });
 };
 
-var writeHTML = function(html,response){
+var writeHTML = function(html,response,db){
   response.writeHead(200, {"Content-Type": "text/html"});
   response.write(html);
   response.end();
@@ -51,7 +51,7 @@ var showStats = function(db, callback,res) {
   html += '<p>'+util.inspect(db.stats())+'</p>';
   html += '<h2> Document Count </h2>';
   html += '<p>'+util.inspect(db.collection('tweets').count())+'</p>';
-  callback(html,res);
+  callback(html,res,db);
 }
 
 
@@ -68,7 +68,7 @@ var findTweets = function(db, callback,res) {
          + ' <br /><b>Text:</b> '
          + tweet.text;
       } else {
-         callback(html,res);
+         callback(html,res,db);
       }
    });
 };
@@ -89,7 +89,7 @@ var searchTweets = function(db, callback,res) {
          + ' <br /><b>Text:</b> '
          + tweet.text;
       } else {
-         callback(html,res);
+         callback(html,res,db);
       }
    });
 };
