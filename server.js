@@ -78,6 +78,7 @@ var findTweetsStream = function(db, callback,res) {
         + tweet.user.name
         + ' <br /><b>Text:</b> '
         + tweet.text;
+      }
     });
 
     cursor.once('end', function() {
