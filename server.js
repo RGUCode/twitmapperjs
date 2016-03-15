@@ -47,11 +47,12 @@ var writeHTML = function(html,response,db){
 }
 
 var showStats = function(db, callback,res) {
-  var html = '<h2> Stats </h2>';
+  var html = '';
   db.collection('tweets').count(function(err, count){
     html += '<h2> Document Count </h2>';
     html += '<p>'+JSON.stringify(count)+'</p>';
     db.stats(function(err, stats){
+      html += '<h2> Stats </h2>';
       html += '<p>'+JSON.stringify(stats)+'</p>';
       callback(html,res,db);
     });
