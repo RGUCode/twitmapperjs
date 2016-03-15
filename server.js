@@ -31,6 +31,9 @@ function handleRequest(request, response){
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
     if(queryData.page =="data"){
+      findTweetsStream(db, writeHTML, response);
+    }
+    else if(queryData.page =="stream"){
       showStats(db, writeHTML, response);
     }
     else{
