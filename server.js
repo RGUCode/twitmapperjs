@@ -30,19 +30,34 @@ function handleRequest(request, response){
   queryData = url.parse(request.url, true).query;
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
-    searchTweets(db, function(html) {
-      response.writeHead(200, {"Content-Type": "text/html"});
-      response.write(html);
-      response.end();
-      db.close();
-    });
+    if(queryData.page =="data"){
+      showStats(db, writeHTML);
+    }
+    else{
+      findTweets(db, writeHTML);
+    }
   });
 };
+
+var writeHTML = function(html){
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write(html);
+  response.end();
+  db.close();
+}
+
+var showStats = function(db, callback) {
+  var cursor =db.collection('tweets').find();
+  var html = '<h2> Stats </h2>';
+  html += '<p>'+db.stats()+'</p>';
+  html += '<h2> Document Count </h2>';
+  html += '<p>'+db.collection('tweets').count()+'</p>';
+}
 
 
 var findTweets = function(db, callback) {
 
-   var cursor =db.collection('tweets').find({"hashtags":queryData.search} );
+   var cursor =db.collection('tweets').find();
    var html = '<h2> Results '+queryData.search+' </h2>';
    cursor.each(function(err, tweet) {
       assert.equal(err, null);
