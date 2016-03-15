@@ -30,12 +30,12 @@ function handleRequest(request, response){
   queryData = url.parse(request.url, true).query;
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
-    if(queryData.page =="data"){
+    //if(queryData.page =="data"){
       showStats(db, writeHTML);
-    }
-    else{
-      findTweets(db, writeHTML);
-    }
+    //}
+    //else{
+      //findTweets(db, writeHTML);
+    //}
   });
 };
 
