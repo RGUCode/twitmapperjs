@@ -23,6 +23,7 @@
 var app = http.createServer(function(req, res) {
     console.log("creating server");
     res.writeHead(200, {'Content-Type': 'text/html'});
+    console.log("search term:"+queryData)
     queryData = url.parse(req.url, true).query;
     res.end(index);
 });
@@ -34,16 +35,16 @@ function start(){
   console.log("starting");
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
-    //console.log(queryData.page);
-    //if(queryData.page =="stream"){
+    console.log(queryData.page);
+    if(queryData.page =="stream"){
       console.log("starting stream");
       findTweetsStream(db);
-    //}
-    //else{
-    //  console.log("starting stats");
-      //showStats(db);
+    }
+    else{
+      console.log("starting stats");
+      showStats(db);
 
-    //}
+    }
   });
 }
 
