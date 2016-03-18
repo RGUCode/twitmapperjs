@@ -72,13 +72,13 @@ var showStats = function(db) {
 
 var findTweetsStream = function(db, callback,res) {
 
-   var cursor =db.collection('tweets').find({coordinates:{$exists:true }});
+   var cursor =db.collection('tweets').find({geo:{$ne:null }});
   // var html = '<h2> Results '+queryData.search+' </h2>';
    var counter=0;
    cursor.on('data', function(tweet) {
      if (tweet != null) {
        //console.log(counter++);
-        io.emit('time', tweet.geo.coordinates);
+        io.emit('time', tweet.user.name);
       }
     });
 
