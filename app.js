@@ -72,7 +72,7 @@ var showStats = function(db) {
 
 var findTweetsStream = function(db, callback,res) {
 
-   var cursor =db.collection('tweets').find({geo:{$exists:true }});
+   var cursor =db.collection('tweets').find({geo.coordinates:{$exists:true }});
   // var html = '<h2> Results '+queryData.search+' </h2>';
    var counter=0;
    cursor.on('data', function(tweet) {
