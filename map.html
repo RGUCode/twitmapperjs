@@ -52,7 +52,7 @@ var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     socket.on('message', console.log.bind(console));
 
     function addMessage(message) {
-        var text = document.createTextNode(JSON.stringify(message)),
+        var text = document.createTextNode(JSON.stringify(message));
             console.log(text);
     }
     function addToMap(p){
