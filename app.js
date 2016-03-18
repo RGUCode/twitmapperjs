@@ -42,7 +42,7 @@ function start(){
       console.log("starting stream");
       findTweetsStream(db);
     }
-    else{
+    else if(queryData.page =="data"){{
       console.log("starting stats");
       showStats(db);
 
