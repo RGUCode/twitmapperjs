@@ -27,6 +27,7 @@ var app = http.createServer(function(req, res) {
     queryData = url.parse(req.url, true).query;
     console.log("search term:"+queryData)
     res.end(index);
+    start();
 });
 
 // Socket.io server listens to our app
@@ -36,7 +37,7 @@ function start(){
   console.log("starting");
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
-    console.log(queryData);
+    console.log(JSON.stringify(queryData));
     if(queryData.page =="stream"){
       console.log("starting stream");
       findTweetsStream(db);
@@ -53,7 +54,7 @@ function start(){
 io.on('connection', function(socket) {
     // Use socket to communicate with this particular client only, sending it it's own id
     socket.emit('welcome', { message: 'Welcome!', id: socket.id });
-    start();
+
 });
 
 app.listen(PORT);
