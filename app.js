@@ -10,7 +10,7 @@
     var url = require('url') ;
     var util = require("util");
     // NEVER use a Sync function except at start-up!
-    index = fs.readFileSync(__dirname + '/index.html');
+    page = fs.readFileSync(__dirname + '/map.html');
 
 
     //Lets define a port we want to listen to
@@ -26,7 +26,7 @@ var app = http.createServer(function(req, res) {
 
     queryData = url.parse(req.url, true).query;
     console.log("search term:"+queryData)
-    res.end(map);
+    res.end(page);
     start();
 });
 
