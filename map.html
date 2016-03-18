@@ -10,6 +10,8 @@
         .ghbtns { position: relative; top: 4px; margin-left: 5px; }
         a { color: #0077ff; }
     </style>
+    <script src='/socket.io/socket.io.js'></script>
+
 </head>
 <body>
 
@@ -32,8 +34,34 @@ var map = L.map('map').setView([-37.87, 175.475], 12);
 var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
-addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
-var heat = L.heatLayer(addressPoints).addTo(map);
+
+
+    var socket = io();
+
+    socket.on('welcome', function(data) {
+        addMessage(data.message);
+
+        // Respond with a message including this clients' id sent from the server
+        socket.emit('i am client', {data: 'foo!', id: data.id});
+    });
+    socket.on('time', function(data) {
+        addToMap(data);
+    });
+    socket.on('error', console.error.bind(console));
+    socket.on('message', console.log.bind(console));
+
+    function addMessage(message) {
+        var text = document.createTextNode(JSON.stringify(message)),
+            el = document.createElement('li'),
+            messages = document.getElementById('messages');
+
+        el.appendChild(text);
+        messages.appendChild(el);
+    }
+    function addToMap(p){
+      addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
+      var heat = L.heatLayer(addressPoints).addTo(map);
+    }
 </script>
 </body>
 </html>
