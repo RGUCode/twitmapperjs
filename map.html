@@ -46,6 +46,7 @@ var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     });
     socket.on('time', function(data) {
         addToMap(data);
+        console.console.log(JSON.Stringify(data));
     });
     socket.on('error', console.error.bind(console));
     socket.on('message', console.log.bind(console));
