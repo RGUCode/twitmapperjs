@@ -9,7 +9,6 @@
     var http = require('http');
     var url = require('url') ;
     var util = require("util");
-    var heatmap = require("")
     // NEVER use a Sync function except at start-up!
     index = fs.readFileSync(__dirname + '/map2.html');
     eval(require('fs').readFileSync('/Leaflet.heat/dist/leaflet.heat.js', 'utf8'));
