@@ -26,7 +26,7 @@ var app = http.createServer(function(req, res) {
 
     queryData = url.parse(req.url, true).query;
     console.log("search term:"+queryData)
-    res.end(index);
+    res.end(map);
     start();
 });
 
