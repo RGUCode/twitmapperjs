@@ -53,11 +53,7 @@ var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
     function addMessage(message) {
         var text = document.createTextNode(JSON.stringify(message)),
-            el = document.createElement('li'),
-            messages = document.getElementById('messages');
-
-        el.appendChild(text);
-        messages.appendChild(el);
+            console.log(text);
     }
     function addToMap(p){
       addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
