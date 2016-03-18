@@ -10,7 +10,7 @@
     var url = require('url') ;
     var util = require("util");
     // NEVER use a Sync function except at start-up!
-    page = fs.readFileSync(__dirname + '/map2.html');
+    index = fs.readFileSync(__dirname + '/index.html');
 
 
     //Lets define a port we want to listen to
@@ -26,7 +26,7 @@ var app = http.createServer(function(req, res) {
 
     queryData = url.parse(req.url, true).query;
     console.log("search term:"+queryData)
-    res.end(page);
+    res.end(index);
     start();
 });
 
@@ -78,7 +78,7 @@ var findTweetsStream = function(db, callback,res) {
    cursor.on('data', function(tweet) {
      if (tweet != null) {
        //console.log(counter++);
-        io.emit('time', tweet.geo.coordinates);
+        io.emit('time', JSON.stringify(tweet.geo.coordinates));
       }
     });
 
