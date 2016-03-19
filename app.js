@@ -25,6 +25,7 @@ var app = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
 
     queryData = url.parse(req.url, true).query;
+    start();
     console.log("search term:"+queryData)
     res.end(index);
 
@@ -54,7 +55,7 @@ function start(){
 io.on('connection', function(socket) {
     // Use socket to communicate with this particular client only, sending it it's own id
     socket.emit('welcome', { message: 'Welcome!', id: socket.id });
-    start();
+
 
 });
 
