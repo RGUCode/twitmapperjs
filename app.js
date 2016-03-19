@@ -25,9 +25,8 @@ var app = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
 
     queryData = url.parse(req.url, true).query;
-    start();
-    console.log("search term:"+queryData)
     res.end(index);
+    start();
 
 });
 
