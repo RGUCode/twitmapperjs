@@ -23,8 +23,6 @@
 var app = http.createServer(function(req, res) {
     console.log("creating server");
     res.writeHead(200, {'Content-Type': 'text/html'});
-
-    queryData = url.parse(req.url, true).query;
     start();
     console.log("search term:"+queryData)
     res.end(index);
@@ -79,7 +77,7 @@ var findTweetsStream = function(db, callback,res) {
    var counter=0;
    cursor.on('data', function(tweet) {
      if (tweet != null) {
-       //console.log(counter++);
+        console.log(counter++);
         io.emit('time', tweet.geo.coordinates);
       }
     });
