@@ -26,7 +26,7 @@ var app = http.createServer(function(req, res) {
 
     queryData = url.parse(req.url, true).query;
     res.end(index);
-    start();
+    
 
 });
 
