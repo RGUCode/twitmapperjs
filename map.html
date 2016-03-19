@@ -46,7 +46,7 @@ var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     });
     socket.on('time', function(data) {
         addToMap(data);
-        console.console.log(JSON.Stringify(data));
+
     });
     socket.on('error', console.error.bind(console));
     socket.on('message', console.log.bind(console));
@@ -56,6 +56,7 @@ var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             console.log(text);
     }
     function addToMap(p){
+      console.log(JSON.Stringify(p));
       addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
       var heat = L.heatLayer(addressPoints).addTo(map);
     }
