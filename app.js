@@ -18,7 +18,7 @@
     var itemsProcessed = 0;
     var total =0;
     var queryData;
-    const COLLECTION = 'locationtweets';
+    const COLLECTION = 'tweets';
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
     console.log("creating server");
