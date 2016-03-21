@@ -25,6 +25,7 @@ client.stream('statuses/filter', {location: '35.47,-20.65,72.16, 43.02'},  funct
     checkContent(tweet, function(){
       MongoClient.connect(mongoURL, function(err, db) {
         assert.equal(null, err);
+
         insertDocument(db,tweet, function() {
           db.close();
         });
@@ -39,9 +40,11 @@ client.stream('statuses/filter', {location: '35.47,-20.65,72.16, 43.02'},  funct
 
 var checkContent = function (tweet, callback) {
     if(tweet.text.indexOf('brexit')){
+      tweet.side = 'n';
       callback();
     }
     else(tweet.text.indexOf('bremain')){
+      tweet.side ='y';
       callback();
     }
 };
