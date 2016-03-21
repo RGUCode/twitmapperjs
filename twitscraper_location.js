@@ -19,7 +19,7 @@ var client = new Twitter({
 
 // europe '35.47,-20.65,72.16, 43.02'
 // uk 49.90, -13.52, 61.52, 1.14'
-client.stream('statuses/filter', {location: '35.47,-20.65,72.16, 43.02'},  function(stream){
+client.stream('statuses/filter', {locations: '35.47,-20.65,72.16, 43.02'},  function(stream){
 
   stream.on('data', function(tweet) {
     checkContent(tweet, function(){
