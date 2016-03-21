@@ -36,7 +36,7 @@ client.stream('statuses/filter', {track: 'holyrood16, #holyrood16, #Holyrood16'}
 var insertDocument = function(db, newtweet, callback) {
    db.collection('holyrood16').insertOne( newtweet, function(err, result) {
     assert.equal(err, null);
-    //console.log("Inserted a document into the tweets collection.");
+    console.log("Inserted a document into the tweets collection.");
     callback();
   });
 };
