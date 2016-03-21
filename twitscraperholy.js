@@ -17,7 +17,7 @@ var client = new Twitter({
  * number of tweets per second depends on topic popularity
  **/
 
-client.stream('statuses/filter', {track: 'holyrood16, #holyrood16, #Holyrood16'},  function(stream){
+client.stream('statuses/filter', {track: 'holyrood16, #holyrood16, #Holyrood16, holyrood2016, #holyrood2016, #Holyrood2016'},  function(stream){
 
   stream.on('data', function(tweet) {
     MongoClient.connect(mongoURL, function(err, db) {
