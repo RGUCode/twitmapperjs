@@ -19,6 +19,13 @@ var client = new Twitter({
 
 // europe '35.47,-20.65,72.16, 43.02'
 // uk 49.90, -13.52, 61.52, 1.14'
+MongoClient.connect(mongoURL, function(err, db) {
+  assert.equal(null, err);
+  var tweet = { "text": "default test"};
+  insertDocument(db,tweet, function() {
+    db.close();
+  });
+});
 client.stream('statuses/filter', {locations: '35.47,-20.65,72.16, 43.02'},  function(stream){
 
   stream.on('data', function(tweet) {
