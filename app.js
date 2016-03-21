@@ -87,16 +87,22 @@ var findTweetsStream = function(db, callback,res) {
        console.log(tweettext);
        //var data = { cord : tweet.geo.coordinates , eu : 'i' };
        //io.emit('time', data);
+
+         var data = { cord : tweet.geo.coordinates , eu : 'x' };
+         io.emit('time', data);
+
+
        if(tweettext.indexOf('brexit')>0){
-         var data = { cord : tweet.geo.coordinates , eu : 'o' };
+         data = { cord : tweet.geo.coordinates , eu : 'o' };
          io.emit('time', data);
 
        }
        if(tweettext.indexOf('bremain')>0){
-         var data = { cord : tweet.geo.coordinates , eu : 'i' };
+         data = { cord : tweet.geo.coordinates , eu : 'i' };
          io.emit('time', data);
 
        }
+
 
         console.log(counter++);
 
