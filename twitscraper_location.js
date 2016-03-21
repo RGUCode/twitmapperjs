@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
-var mongoURL = 'mongodb://localhost:27017/loctweets';
+var mongoURL = 'mongodb://localhost:27017/tweets';
 var Twitter = require('twitter');
 var counter = 0;
 
@@ -63,7 +63,7 @@ var checkContent = function (tweet, callback) {
 };
 
 var insertDocument = function(db, newtweet, callback) {
-   db.collection('tweets').insertOne( newtweet, function(err, result) {
+   db.collection('locationtweets').insertOne( newtweet, function(err, result) {
     assert.equal(err, null);
     //console.log("Inserted a document into the tweets collection.");
     callback();

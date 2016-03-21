@@ -4,7 +4,7 @@
     var MongoClient = require('mongodb').MongoClient;
     var assert = require('assert');
     var ObjectId = require('mongodb').ObjectID;
-    var mongoURL = 'mongodb://localhost:27017/loctweets';
+    var mongoURL = 'mongodb://localhost:27017/tweets';
     var fs = require('fs');
     var http = require('http');
     var url = require('url') ;
@@ -18,7 +18,7 @@
     var itemsProcessed = 0;
     var total =0;
     var queryData;
-
+    const COLLECTION = 'locationtweets';
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
     console.log("creating server");
@@ -54,7 +54,7 @@ function start(){
 // Emit welcome message on connection
 io.on('connection', function(socket) {
     // Use socket to communicate with this particular client only, sending it it's own id
-      db.collection('tweets').count(function(err, count){
+      db.collection(COLLECTION).count(function(err, count){
         socket.emit('welcome', { message: 'Welcome! '+count+' tweets tracked', id: socket.id });
       });
     start();
@@ -65,7 +65,7 @@ io.on('connection', function(socket) {
 
 var showStats = function(db) {
   var html = '';
-  db.collection('tweets').count(function(err, count){
+  db.collection(COLLECTION).count(function(err, count){
     io.emit('data', count);
     db.stats(function(err, stats){
       io.emit('data', stats);
@@ -76,7 +76,7 @@ var showStats = function(db) {
 
 var findTweetsStream = function(db, callback,res) {
 
-   var cursor =db.collection('tweets').find({geo:{$ne:null }});
+   var cursor =db.collection(COLLECTION).find({geo:{$ne:null }});
   // var html = '<h2> Results '+queryData.search+' </h2>';
    var counter=0;
    cursor.on('data', function(tweet) {
