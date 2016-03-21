@@ -54,8 +54,10 @@ function start(){
 // Emit welcome message on connection
 io.on('connection', function(socket) {
     // Use socket to communicate with this particular client only, sending it it's own id
-    socket.emit('welcome', { message: 'Welcome!', id: socket.id });
-start();
+      db.collection('tweets').count(function(err, count){
+        socket.emit('welcome', { message: 'Welcome! '+count+' tweets tracked', id: socket.id });
+      });
+    start();
 
 });
 
