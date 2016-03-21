@@ -62,7 +62,7 @@
     var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
-    var heat = L.heatLayer([[49.90, -13.52, 1],[61.52, 1.14,, 0.]], {radius: 25}).addTo(map);
+    var heat = L.heatLayer([[49.90, -13.52, 1],[61.52, 1.14,, 0.]], {radius: 2,blur: 2, gradient:{0.4: 'blue', 0.65: 'lime', 1: 'red'}}).addTo(map);
 
 
 </script>
