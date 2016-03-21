@@ -31,7 +31,7 @@ var app = http.createServer(function(req, res) {
 });
 app.listen(PORT);
 // Socket.io server listens to our app
-var io = require('socket.io').listen();
+var io = require('socket.io').listen(app);
 
 function start(){
   console.log("starting");
@@ -54,7 +54,7 @@ function start(){
 io.on('connection', function(socket) {
     // Use socket to communicate with this particular client only, sending it it's own id
     socket.emit('welcome', { message: 'Welcome!', id: socket.id });
-
+start();
 
 });
 
@@ -63,9 +63,9 @@ io.on('connection', function(socket) {
 var showStats = function(db) {
   var html = '';
   db.collection('tweets').count(function(err, count){
-    io.emit('time', count);
+    io.emit('data', count);
     db.stats(function(err, stats){
-      io.emit('time', stats);
+      io.emit('data', stats);
       db.close();
     });
   });

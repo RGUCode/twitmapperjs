@@ -44,6 +44,7 @@
     });
     socket.on('error', console.error.bind(console));
     socket.on('message', console.log.bind(console));
+    socket.on('data', console.log.bind(console));
 
     function addMessage(message) {
         var text = document.createTextNode(JSON.stringify(message));
