@@ -18,7 +18,7 @@ var client = new Twitter({
  **/
 
 // europe '35.47,-20.65,72.16, 43.02'
-// uk 49.900644, -13.516728, 61.516474, 1.138449
+// uk 49.90, -13.52, 61.52, 1.14'
 client.stream('statuses/filter', {location: '35.47,-20.65,72.16, 43.02'},  function(stream){
 
   stream.on('data', function(tweet) {
