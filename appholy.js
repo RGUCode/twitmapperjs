@@ -10,7 +10,7 @@
     var url = require('url') ;
     var util = require("util");
     // NEVER use a Sync function except at start-up!
-    index = fs.readFileSync(__dirname + '/map2.html');
+    index = fs.readFileSync(__dirname + '/mapholy.html');
 
 
     //Lets define a port we want to listen to
