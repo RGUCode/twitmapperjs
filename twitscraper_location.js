@@ -39,13 +39,13 @@ client.stream('statuses/filter', {locations: '35.47,-20.65,72.16, 43.02'},  func
 });
 
 var checkContent = function (tweet, callback) {
-
-    if(tweet.text.indexOf('brexit')>0){
+  var tweettext = tweet.text.toLowerCase();
+    if(tweettext.indexOf('brexit')>0){
       tweet.chkno = 1;
       console.log(tweet.text);
 
     }
-    if(tweet.text.indexOf('bremain')>0){
+    if(tweettext.indexOf('bremain')>0){
       tweet.chkyes = 1;
       console.log(tweet.text);
 
