@@ -52,9 +52,9 @@
     }
     function addToMap(p){
       console.log(p);
-      //var latlng = L.latLng(p[0], p[1]);
-      addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
-      var heat = L.heatLayer(addressPoints).addTo(map);
+      var latlng = L.latLng(p[0], p[1]);
+      //addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
+      heat.addLatLng(latlng);
       //L.marker(latlng).addTo(map);
     }
 
@@ -62,6 +62,7 @@
     var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
+    var heat = L.heatLayer().addTo(map);
 
 </script>
 </body>
