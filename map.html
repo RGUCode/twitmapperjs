@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <script src='/socket.io/socket.io.js'></script>
-    <script src="/leafletheat/dist/leaflet-heat.js"></script>
+    <!--<script src="/leafletheat/dist/leaflet-heat.js"></script>-->
     <style>
         #map { width: 800px; height: 600px; }
         body { font: 16px/1.4 "Helvetica Neue", Arial, sans-serif; }
@@ -26,9 +26,6 @@
 <!-- <script src="../node_modules/simpleheat/simpleheat.js"></script>
 <script src="../src/HeatLayer.js"></script> -->
 
-
-
-<script src="http://leaflet.github.io/Leaflet.markercluster/example/realworld.10000.js"></script>
 <script>
 
 
@@ -55,7 +52,8 @@
     function addToMap(p){
       console.log(JSON.Stringify(p));
       addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
-      var heat = L.heatLayer(addressPoints).addTo(map);
+      //var heat = L.heatLayer(addressPoints).addTo(map);
+      L.marker(p[0],p[1]).addTo(map);
     }
 
     var map = L.map('map').setView([-37.87, 175.475], 12);
