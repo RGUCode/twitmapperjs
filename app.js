@@ -83,8 +83,10 @@ var findTweetsStream = function(db, callback,res) {
    var counter=0;
    cursor.on('data', function(tweet) {
      if (tweet != null) {
-       var data = { cord : tweet.geo.coordinates , eu : 'o' };
+       var tweettext = tweet.text;
+
        if(tweettext.indexOf('brexit')>0){
+         var data = { cord : tweet.geo.coordinates , eu : 'o' };
          io.emit('time', data);
 
        }
