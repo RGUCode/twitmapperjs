@@ -31,7 +31,7 @@ var app = http.createServer(function(req, res) {
 });
 app.listen(PORT);
 // Socket.io server listens to our app
-var io = require('socket.io').listen(app);
+var io = require('socket.io').listen();
 
 function start(){
   console.log("starting");
