@@ -54,9 +54,11 @@ function start(){
 // Emit welcome message on connection
 io.on('connection', function(socket) {
     // Use socket to communicate with this particular client only, sending it it's own id
+    MongoClient.connect(mongoURL, function(err, db) {
       db.collection(COLLECTION).count(function(err, count){
         socket.emit('welcome', { message: 'Welcome! '+count+' tweets tracked', id: socket.id });
       });
+    });
     start();
 
 });
