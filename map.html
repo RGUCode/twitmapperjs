@@ -47,12 +47,12 @@
     socket.on('data', console.log.bind(console));
 
     function addMessage(message) {
-        var text = document.createTextNode(JSON.stringify(message));
-            console.log(text);
+        //var text = document.createTextNode(JSON.stringify(message));
+            console.log(message);
     }
     function addToMap(p){
-      console.log(JSON.Stringify(p));
-      addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
+      console.log(p);
+      //addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
       //var heat = L.heatLayer(addressPoints).addTo(map);
       L.marker(p[0],p[1]).addTo(map);
     }
