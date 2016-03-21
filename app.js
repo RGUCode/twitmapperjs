@@ -38,14 +38,15 @@ function start(){
   MongoClient.connect(mongoURL, function(err, db) {
     assert.equal(null, err);
     console.log(JSON.stringify(queryData));
-    if(queryData.page =="stream"){
-      console.log("starting stream");
-      findTweetsStream(db);
-    }
-    else if(queryData.page =="data"){
-      console.log("starting stats");
-      showStats(db);
-
+    if(queryData){
+      if(queryData.page =="stream"){
+        console.log("starting stream");
+        findTweetsStream(db);
+      }
+      else if(queryData.page =="data"){
+        console.log("starting stats");
+        showStats(db);
+      }
     }
   });
 }
