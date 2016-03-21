@@ -43,7 +43,7 @@ var checkContent = function (tweet, callback) {
       tweet.side = 'n';
       callback();
     }
-    else(tweet.text.indexOf('bremain')){
+    else if(tweet.text.indexOf('bremain')){
       tweet.side ='y';
       callback();
     }
