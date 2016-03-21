@@ -41,14 +41,16 @@ client.stream('statuses/filter', {locations: '35.47,-20.65,72.16, 43.02'},  func
 var checkContent = function (tweet, callback) {
 
     if(tweet.text.indexOf('brexit')){
-      tweet.no = 1;
+      tweet.chkno = 1;
+      console.log(tweet.text);
 
     }
     if(tweet.text.indexOf('bremain')){
-      tweet.yes = 1;
+      tweet.chkyes = 1;
+      console.log(tweet.text);
 
     }
-    if(tweet.yes == 1|| tweet.no == 1 ){
+    if(tweet.chkyes == 1 || tweet.chkno == 1 ){
       callback();
     }
 };
