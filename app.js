@@ -9,6 +9,7 @@
     var http = require('http');
     var url = require('url') ;
     var util = require("util");
+    var io = require('socket.io');
     // NEVER use a Sync function except at start-up!
     index = fs.readFileSync(__dirname + '/map.html');
 
@@ -30,8 +31,7 @@ var app = http.createServer(function(req, res) {
 
 });
 
-// Socket.io server listens to our app
-var io = require('socket.io').listen(app);
+app.listen(PORT);
 
 function start(){
   console.log("starting");
@@ -58,7 +58,7 @@ io.on('connection', function(socket) {
 
 });
 
-app.listen(PORT);
+
 
 var showStats = function(db) {
   var html = '';
