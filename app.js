@@ -29,7 +29,7 @@ var app = http.createServer(function(req, res) {
     //start();
 
 });
-
+app.listen(PORT);
 // Socket.io server listens to our app
 var io = require('socket.io').listen(app);
 
@@ -58,7 +58,7 @@ io.on('connection', function(socket) {
 
 });
 
-//app.listen(PORT);
+
 
 var showStats = function(db) {
   var html = '';
