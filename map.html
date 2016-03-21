@@ -53,7 +53,7 @@
     }
     function addToMap(p){
       console.log(p);
-      var latlng = L.latLng(p.cord[0], p.cord[1]);
+      var latlng = L.latLng(p.cord[0], p.cord[1], 1);
       //addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
       if(p.eu=='i'){
         yes.addLatLng(latlng);
