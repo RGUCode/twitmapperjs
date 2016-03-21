@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
-var mongoURL = 'mongodb://localhost:27017/test';
+var mongoURL = 'mongodb://localhost:27017/loctweets';
 var Twitter = require('twitter');
 var counter = 0;
 

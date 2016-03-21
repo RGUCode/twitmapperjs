@@ -4,7 +4,7 @@
     var MongoClient = require('mongodb').MongoClient;
     var assert = require('assert');
     var ObjectId = require('mongodb').ObjectID;
-    var mongoURL = 'mongodb://localhost:27017/test';
+    var mongoURL = 'mongodb://localhost:27017/loctweets';
     var fs = require('fs');
     var http = require('http');
     var url = require('url') ;
